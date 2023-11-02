@@ -1,0 +1,22 @@
+.axis path,
+.axis line {
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    fill: black;
+}
+
+text.name,
+text.gravity {
+    text-anchor: middle;
+    fill: black;
+    font-size: 0.5em;
+}
+
+#chart {
+    width: 100%;
+    height: 350px;
+    background-color: #ffeeee;
+}
+

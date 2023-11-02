@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>DSCI 554 Lab</title>
+
+  <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="./style.css">
+
+  <link href="node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="./github-dark-dimmed.min.css">
+  <script src="./highlight.min.js"></script>
+
+  <script src="./node_modules/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+  <link rel="stylesheet" href="./node_modules/highlightjs-copy/dist/highlightjs-copy.min.css" />
+
+  <script>
+    hljs.highlightAll();
+    hljs.addPlugin(new CopyButtonPlugin());
+  </script>
+
+  <script src="./node_modules/d3/dist/d3.min.js"></script>
+</head>
+
+<p>
+<h1>🧪 Responsive HTML bar chart</h1>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="index.html">Index</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Responsive HTML bar chart</li>
+  </ol>
+</nav>
+
+<p>In the following we are going to see how to create a responsive HTML chart by resizing text and marks based on the
+  page width.</p>
+
+<h2>Responsive text</h2>
+
+<p>To adjust responsive text based on page width use 'vw' (viewport width) units. The <a target="_blank"
+    href="https://developer.mozilla.org/en-US/docs/Web/CSS/Viewport_concepts">viewport</a> is basically the part of the
+  document that is currently visible. 1vw is equal to 1% of the viewport width. In this case, the font size is set to 3%
+  of the viewport width. This means that the text inside the &lt;div&gt; element will be 3% of the width of the
+  viewport, regardless of the screen size or device used to view the webpage.</p>
+
+<p class="m-2" style="font-size: 3vw;">resizing the browser will resize this text to 3% of viewport width</p>
+<pre><code class="HTML" data-trim data-noescape>&lt;div style="font-size: 3vw;"&gt;resizing the browser will resize this text to 3% of viewport width&lt;/div&gt;</code></pre>
+
+<h2>Responsive div</h2>
+
+<p>To make <code>div</code> responsive we create the div inside a parent div and use percentage <code>%</code> units to
+  specify the inner div width relative to the the parent div.</p>
+
+<div>
+  <div style="display: inline-block; background-color:#7abcff; height: 40px; width: 80%;"></div>
+</div>
+
+<pre><code class="HTML" data-trim data-noescape>&lt;div&gt;
+  &lt;div style="display: inline-block; background-color:#7abcff; height: 40px; width: 80%;"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h2 class="mt-2">Responsive bar chart</h2>
+
+<div class="mt-2 accordion mb-2" id="accordionOne">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+        aria-expanded="false" aria-controls="collapseOne">
+        HTML bar chart
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+      data-bs-parent="#accordionOne">
+      <div class="accordion-body">
+
+        <pre style="font-size: 0.85em;"><code class="html">&lt;!--
+    City            value         %                                       % width
+    Los Angeles     240749        ((78 / 240749) * 240749).toFixed(1)     78.0%
+    Miami-Dade      156559        ((78 / 240749) * 156559).toFixed(1)     50.7%
+    Maricopa        133641        ((78 / 240749) * 133641).toFixed(1)     43.3%
+    Cook            126003        ((78 / 240749) * 126003).toFixed(1)     40.8%
+    Harris          105757        ((78 / 240749) * 105757).toFixed(1)     34.3%
+    Broward         70950         ((78 / 240749) * 70950).toFixed(1)      23.0%
+    Dallas          70810         ((78 / 240749) * 70810).toFixed(1)      22.9%
+    Queens          69370         ((78 / 240749) * 69370).toFixed(1)      22.5%
+    Kings           63974         ((78 / 240749) * 63974).toFixed(1)      20.7%
+    Clark           59153         ((78 / 240749) * 59153).toFixed(1)      19.2%
+--&gt;
+
+&lt;style&gt;
+  .title {
+    margin-bottom: 10px;
+    font-size: 2vw;
+    /* responsive font size */
+  }
+
+  .item {
+    /* wrapper for label + bar */
+    text-align: left;
+    margin-bottom: 5px;
+  }
+
+  .bar {
+    display: inline-block;
+    /* turn bar div inline so it shows on the same line with the label */
+    text-align: right;
+    vertical-align: middle;
+    background-color: #7abcff;
+    height: 30px;
+  }
+
+  .label {
+    display: inline-block;
+    /* turn label div inline so it shows on the same line with the bar */
+    text-align: right;
+    vertical-align: middle;
+    line-height: 20px;
+    /* make the text and bar the same height to they align */
+    width: 20%;
+    /* size of label relative to page */
+    font-size: 2vw;
+    /* responsive font size */
+  }
+
+  .value {
+    /* the value label in the bar */
+    color: #444;
+    font-family: 'Courier New', Courier, monospace;
+    /* use fixed font */
+    font-weight: bolder;
+    vertical-align: middle;
+    /* align text to the middle of the bar */
+    line-height: 20px;
+    /* trick to make sure the label height is the same as the bar height so it will align to the middle */
+    margin-right: 5px;
+    /* move label 5px from the end of the bar */
+    font-size: 2vw;
+    /* responsive font size */
+  }
+&lt;/style&gt;
+
+&lt;div class="title"&gt;Top 10 COVID-19 confirmed in the US, Aug 31 2020 (source Johns Hopkins University)&lt;/div&gt;
+&lt;div class="item"&gt;
+  &lt;div class="label"&gt;Los Angeles&lt;/div&gt;
+  &lt;div class="bar" style="width: 78.0%;"&gt; &lt;!-- responsive bar: longest bar width is 78% of page width --&gt;
+    &lt;span class="value"&gt;240,749&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="item"&gt;
+  &lt;div class="label"&gt;Miami-Dade&lt;/div&gt;
+  &lt;div class="bar" style="width: 50.7%;"&gt; &lt;!-- responsive bar --&gt;
+    &lt;span class="value"&gt;156,559&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="item"&gt;
+  &lt;div class="label"&gt;Maricopa&lt;/div&gt;
+  &lt;div class="bar" style="width: 43.3%;"&gt; &lt;!-- responsive bar --&gt;
+    &lt;span class="value"&gt;133,641&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="item"&gt;
+  &lt;div class="label"&gt;Cook&lt;/div&gt;
+  &lt;div class="bar" style="width: 40.8%;"&gt; &lt;!-- responsive bar --&gt;
+    &lt;span class="value"&gt;126,003&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="item"&gt;
+  &lt;div class="label"&gt;Harris&lt;/div&gt;
+  &lt;div class="bar" style="width: 34.3%;"&gt; &lt;!-- responsive bar --&gt;
+    &lt;span class="value"&gt;105,757&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="item"&gt;
+  &lt;div class="label"&gt;Broward&lt;/div&gt;
+  &lt;div class="bar" style="width: 23.0%;"&gt; &lt;!-- responsive bar --&gt;
+    &lt;span class="value"&gt;70,950&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="item"&gt;
+  &lt;div class="label"&gt;Dallas&lt;/div&gt;
+  &lt;div class="bar" style="width: 22.9%;"&gt; &lt;!-- responsive bar --&gt;
+    &lt;span class="value"&gt;70,810&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="item"&gt;
+  &lt;div class="label"&gt;Queens&lt;/div&gt;
+  &lt;div class="bar" style="width: 22.5%;"&gt; &lt;!-- responsive bar --&gt;
+    &lt;span class="value"&gt;69,370&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="item"&gt;
+  &lt;div class="label"&gt;Kings&lt;/div&gt;
+  &lt;div class="bar" style="width: 20.7%;"&gt; &lt;!-- responsive bar --&gt;
+    &lt;span class="value"&gt;63,974&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="item"&gt;
+  &lt;div class="label"&gt;Clark&lt;/div&gt;
+  &lt;div class="bar" style="width: 19.2%;"&gt; &lt;!-- responsive bar --&gt;
+    &lt;span class="value"&gt;59,153&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="p-3 mb-3">
+  <!--
+      City            value         %                                       % width
+      Los Angeles     240749        ((78 / 240749) * 240749).toFixed(1)     78.0%
+      Miami-Dade      156559        ((78 / 240749) * 156559).toFixed(1)     50.7%
+      Maricopa        133641        ((78 / 240749) * 133641).toFixed(1)     43.3%
+      Cook            126003        ((78 / 240749) * 126003).toFixed(1)     40.8%
+      Harris          105757        ((78 / 240749) * 105757).toFixed(1)     34.3%
+      Broward         70950         ((78 / 240749) * 70950).toFixed(1)      23.0%
+      Dallas          70810         ((78 / 240749) * 70810).toFixed(1)      22.9%
+      Queens          69370         ((78 / 240749) * 69370).toFixed(1)      22.5%
+      Kings           63974         ((78 / 240749) * 63974).toFixed(1)      20.7%
+      Clark           59153         ((78 / 240749) * 59153).toFixed(1)      19.2%
+      -->
+
+  <style>
+    .title {
+      margin-bottom: 10px;
+      font-size: 2vw;
+      /* responsive font size */
+    }
+
+    .item {
+      /* wrapper for label + bar */
+      text-align: left;
+      margin-bottom: 5px;
+    }
+
+    .bar {
+      display: inline-block;
+      /* turn bar div inline so it shows on the same line with the label */
+      text-align: right;
+      vertical-align: middle;
+      background-color: #7abcff;
+      height: 30px;
+    }
+
+    .label {
+      display: inline-block;
+      /* turn label div inline so it shows on the same line with the bar */
+      text-align: right;
+      vertical-align: middle;
+      line-height: 20px;
+      /* make the text and bar the same height to they align */
+      width: 20%;
+      /* size of label relative to page */
+      font-size: 2vw;
+      /* responsive font size */
+    }
+
+    .value {
+      /* the value label in the bar */
+      color: #444;
+      font-family: 'Courier New', Courier, monospace;
+      /* use fixed font */
+      font-weight: bolder;
+      vertical-align: middle;
+      /* align text to the middle of the bar */
+      line-height: 20px;
+      /* trick to make sure the label height is the same as the bar height so it will align to the middle */
+      margin-right: 5px;
+      /* move label 5px from the end of the bar */
+      font-size: 2vw;
+      /* responsive font size */
+    }
+  </style>
+
+  <div class="title">Top 10 COVID-19 confirmed in the US, Aug 31 2020 (source Johns Hopkins University)</div>
+  <div class="item">
+    <div class="label">Los Angeles</div>
+    <div class="bar" style="width: 78.0%;"> <!-- responsive bar: longest bar width is 78% of page width -->
+      <span class="value">240,749</span>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="label">Miami-Dade</div>
+    <div class="bar" style="width: 50.7%;"> <!-- responsive bar -->
+      <span class="value">156,559</span>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="label">Maricopa</div>
+    <div class="bar" style="width: 43.3%;"> <!-- responsive bar -->
+      <span class="value">133,641</span>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="label">Cook</div>
+    <div class="bar" style="width: 40.8%;"> <!-- responsive bar -->
+      <span class="value">126,003</span>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="label">Harris</div>
+    <div class="bar" style="width: 34.3%;"> <!-- responsive bar -->
+      <span class="value">105,757</span>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="label">Broward</div>
+    <div class="bar" style="width: 23.0%;"> <!-- responsive bar -->
+      <span class="value">70,950</span>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="label">Dallas</div>
+    <div class="bar" style="width: 22.9%;"> <!-- responsive bar -->
+      <span class="value">70,810</span>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="label">Queens</div>
+    <div class="bar" style="width: 22.5%;"> <!-- responsive bar -->
+      <span class="value">69,370</span>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="label">Kings</div>
+    <div class="bar" style="width: 20.7%;"> <!-- responsive bar -->
+      <span class="value">63,974</span>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="label">Clark</div>
+    <div class="bar" style="width: 19.2%;"> <!-- responsive bar -->
+      <span class="value">59,153</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="mt-3 text-end"><a href="#"><i class="bi bi-arrow-up"></i> top</a></div>
+
+</body>
+
+</html>

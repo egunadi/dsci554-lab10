@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>DSCI 554 Lab</title>
+
+  <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="./style.css">
+
+  <link href="node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="./github-dark-dimmed.min.css">
+  <script src="./highlight.min.js"></script>
+
+  <script src="./node_modules/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+  <link rel="stylesheet" href="./node_modules/highlightjs-copy/dist/highlightjs-copy.min.css" />
+
+  <script>
+    hljs.highlightAll();
+    hljs.addPlugin(new CopyButtonPlugin());
+  </script>
+</head>
+
+<body>
+	<h1 class="neon">🧪 Responsive D3 bar/lollipop chart</h1>
+
+	<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Index</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Lab 3: responsive D3 bar/lollipop chart</li>
+    </ol>
+  </nav>
+
+	<h2>Responsive bar chart</h2>
+
+  We implement a responsive bar chart in the page using <a href="charts/bar_lollipop.js" target="_blank">bar_lollipop.js</a> and <a
+      href="charts/bar_lollipop.css" target="_blank">bar_lollipop.css</a>.
+
+<pre><code class="HTML">&lt;svg id="chart" width="400" height="400"&gt;&lt;/svg&gt;
+
+&lt;link rel="stylesheet" href="charts/bar_lollipop.css"&gt;
+&lt;script src="charts/bar_lollipop.js"&gt;&lt;/script&gt;</code></pre>
+
+  <div class="mb-3">
+		<script src="node_modules/d3/dist/d3.min.js"></script>
+		<svg id="chart" width="400" height="400"></svg>
+
+    <link rel="stylesheet" href="charts/bar_lollipop.css">
+    <script src="charts/bar_lollipop.js"></script>
+	</div>
+
+  <div class="mt-3 text-end"><a href="#"><i class="bi bi-arrow-up"></i> top</a></div>
+
+</body>
+</html>

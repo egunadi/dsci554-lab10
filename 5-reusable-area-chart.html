@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>DSCI 554 Lab</title>
+
+	<link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="./style.css">
+
+  <link href="node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="./github-dark-dimmed.min.css">
+  <script src="./highlight.min.js"></script>
+
+  <script src="./node_modules/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+  <link rel="stylesheet" href="./node_modules/highlightjs-copy/dist/highlightjs-copy.min.css" />
+
+  <script>
+    hljs.highlightAll();
+    hljs.addPlugin(new CopyButtonPlugin());
+  </script>
+</head>
+
+<body>
+	<h1 class="neon">🧪 Re-usable D3 area chart</h1>
+
+	<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Index</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Re-usable D3 area chart</li>
+    </ol>
+  </nav>
+
+	<h2>Responsive area chart</h2>
+
+	<div>We implement a responsive area chart in the page using <code>timeSeriesChart.js</code> (original code from <a href="https://bl.ocks.org/curran/66d926fe73211fd650ec" target="_blank">https://bl.ocks.org/curran/66d926fe73211fd650ec</a>).</div>
+
+  Load in the page <a href="timeSeriesChart.js" target="_blank">timeSeriesChart.js</a> and <a
+      href="charts/timeSeriesChart.css" target="_blank">timeSeriesChart.css</a>:
+
+	<pre><code class="HTML">&lt;link rel="stylesheet" href="file.css"&gt;
+&lt;script src="file.js"&gt;&lt;/script&gt;</code></pre> and complete the code for the second chart.
+	
+  <div class="card p-3 mb-3">
+		<script src="node_modules/d3/dist/d3.min.js"></script>
+
+		<link rel="stylesheet" href="charts/timeSeriesChart.css">
+		<script src="charts/timeSeriesChart.js"></script>
+
+		<div id="sp500"></div> <!-- sp500.csv area chart -->
+		<div id="amzn"></div> <!-- amzn.csv area chart -->
+
+		<script>
+			d3.csv("data/sp500.csv").then(data => {
+				var formatDate = d3.timeParse("%b %Y");
+
+				var chart = timeSeriesChart()
+					.x(d => formatDate(d.date))
+					.y(d => +d.price)
+					.width(600)
+					.height(100)
+					.margin({ top: 20, right: 40, bottom: 20, left: 20 });
+
+				d3.select("#sp500")
+					.datum(data)
+					.call(chart);
+				// chart.plot("#sp500", data);  //alternative
+			});
+		</script>
+
+		<script>
+			d3.csv('data/amzn.csv', d => {
+				var format = d3.timeParse('%Y-%m-%d');
+				return {
+					date: format(d.date),
+					close: +d.close
+				};
+			}).then(data => {
+				var chart = timeSeriesChart()
+					.x(d => d.date)
+					.y(d => d.close)
+					.width(600)
+					.height(100)
+					.margin({ top: 20, right: 40, bottom: 20, left: 20 });
+
+				chart.plot("#amzn", data);
+			});
+		</script>
+
+	</div>
+
+	<div class="mt-3 text-end"><a href="#"><i class="bi bi-arrow-up"></i> top</a></div>
+
+</body>
+
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>DSCI 554 Lab</title>
+
+	<link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="./style.css">
+
+  <link href="node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="./github-dark-dimmed.min.css">
+  <script src="./highlight.min.js"></script>
+
+  <script src="./node_modules/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+  <link rel="stylesheet" href="./node_modules/highlightjs-copy/dist/highlightjs-copy.min.css" />
+
+  <style>
+    /* Add some custom styles for better visualization */
+    .example {
+      margin-bottom: 20px;
+    }
+
+    .container {
+      margin-top: 20px;
+    }
+  </style>
+
+  <script>
+    hljs.highlightAll();
+    hljs.addPlugin(new CopyButtonPlugin());
+  </script>
+</head>
+
+<body>
+	<h1 class="neon">🧪 Bootstrap</h1>
+
+	<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Index</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Bootstrap</li>
+    </ol>
+  </nav>
+
+    <h2>Responsive Components</h2>
+
+    <h3>Responsive Navbar</h3>
+    <p>Navbars can use <code>.navbar-toggler</code>, <code>.navbar-collapse</code>, and <code>.navbar-expand{-sm|-md|-lg|-xl|-xxl}</code> classes to determine when their content collapses behind a button. In combination with other utilities, you can easily choose when to show or hide particular elements.</p>
+    <p>For navbars that never collapse, add the <code>.navbar-expand</code> class on the navbar. For navbars that always collapse, don’t add any <code>.navbar-expand</code> class.</p>
+    <p>See the documentation for <a target="_blank" href="https://getbootstrap.com/docs/5.3/components/navbar/#responsive-behaviors">Responsive behaviors</a></p>
+
+    <div class="example">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <h3>Responsive Grid Layout</h3>
+    <p>Bootstrap’s grid includes six tiers of predefined classes for building complex responsive layouts. Customize the size of your columns on extra small, small, medium, large, or extra large devices however you see fit.</p>
+    <p>See the documentation for <a target="_blank" href="https://getbootstrap.com/docs/5.3/layout/grid/#responsive-classes">Responsive classes</a></p>
+
+    <style>
+      .col, .col-8, .col-4 { border: 1px solid rgba(98, 0, 225, 0.3); }
+    </style>
+    <div class="container text-center">
+      <div class="row">
+        <div class="col">col</div>
+        <div class="col">col</div>
+        <div class="col">col</div>
+        <div class="col">col</div>
+      </div>
+      <div class="row">
+        <div class="col-8">col-8</div>
+        <div class="col-4">col-4</div>
+      </div>
+    </div>
+
+    <h3>Responsive Image</h3>
+    <p>Images in Bootstrap are made responsive with <code>.img-fluid</code>. This applies <code>max-width: 100%;</code> and <code>height: auto;</code> to the image so that it scales with the parent width.</p>
+    <p>See the documentation <a target="_blank" href="https://getbootstrap.com/docs/5.3/content/images/#responsive-images">Responsive images</a></p>
+    <img src="images/components.png" class="img-fluid" alt="...">
+
+    <h3>Responsive Table</h3>
+    <p>Responsive tables allow tables to be scrolled horizontally with ease. Make any table responsive across all viewports by wrapping a <code>.table</code> with <code>.table-responsive</code>. Or, pick a maximum breakpoint with which to have a responsive table up to by using <code>.table-responsive{-sm|-md|-lg|-xl|-xxl}</code>.</p>
+    <p>See the documentation for <a target="_blank" href="https://getbootstrap.com/docs/5.3/content/tables/#responsive-tables">Responsive tables</a></p>
+
+    <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Age</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>John</td>
+              <td>Doe</td>
+              <td>30</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jane</td>
+              <td>Smith</td>
+              <td>25</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+
+	<h2 class="mt-3">Bootstrap Examples</h2>
+
+  <p>You can reuse parts of the framework, custom components and layouts from <a target="_blank" href="https://getbootstrap.com/docs/5.3/examples/">Examples</a>.</p>
+  <p>For example, to implement the <a target="_blank" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">Dashboard</a> layout in your project:</p>
+
+	<div>
+    <ol>
+      <li>Click the Download examples button in the <a href="https://getbootstrap.com/docs/5.3/examples/">examples page</a></li>
+      <li>Unzip the archive, open the index file under <code>dashboard</code></li>
+      <li>You can check that the dashboard works as expected by opening <code>dashboard/index.html</code></li>
+      <li>Copy the <code>dashboard</code> contents in your project folder</li>
+      <li>Initialize npm if needed and installs bootstrap:
+        <pre><code class="sh" data-trim data-noescape>mkdir bootstrap-dashboard-example
+cd bootstrap-dashboard-example
+npm init
+npm install --save bootstrap</code></pre>
+      </li>
+      <li>Adjust the paths for <code>bootstrap.min.css</code> and <code>bootstrap.bundle.min.js</code> in <code>index.html</code> to use the files from <code>node_modules</code>:
+        <pre><code class="sh" data-trim data-noescape>./node_modules/bootstrap/dist/css/bootstrap.min.css
+./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js</code></pre>
+      </li>
+      <li>You can check that the dashboard works as expected by opening <code>index.html</code>.</li>
+    </ol>
+
+</body>
+
+</html>
